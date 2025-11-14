@@ -1,3 +1,4 @@
+require('dotenv').config();
 const connectDB = require('./config/mongo');
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -31,6 +32,10 @@ app.use('/api/capstones', capstoneRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/notifications', notificationRoutes);
+
+app.get('/api/health', (req, res) => {
+  res.json({ message: '✅ Backend is connected!' });
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000; 
